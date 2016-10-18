@@ -34,6 +34,7 @@
         }
       },
       itemDown: function (item, index, event) {
+        event.persist();
         this.handleTouchEvents(event);
 
         var self = this;
@@ -113,10 +114,6 @@
         window.addEventListener('contextmenu', this.preventDefault);
       },
       onMouseUp: function (event) {
-        if (event.type.indexOf('touch') >= 0 && !this.state.movedALittle) {
-          event.preventDefault();
-        }
-
         // Item clicked
         if (typeof this.props.itemClicked === 'function' && !this.state.held && !this.state.moved && this.state.dragged) {
           this.props.itemClicked(event, this.state.dragged.item, this.state.dragged.index);
